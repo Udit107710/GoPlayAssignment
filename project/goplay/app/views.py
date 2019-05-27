@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -14,7 +14,7 @@ class SignUpView(View):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("User Created!")
+            return redirect('/app/login/')
         else:
             return HttpResponse(form.errors)
 
